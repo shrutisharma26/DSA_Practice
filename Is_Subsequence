@@ -1,0 +1,27 @@
+//LeetCode 392
+//Is subsequence?
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int m=s.size(), n=t.size();
+        int i=0, j=0;
+        vector<char>ans;
+
+        if(m==0 && n==0) return true;
+        if(m==0 || n==0) return false;
+        if(i==m) return true;
+
+        if(s[i]==t[j]){
+            ans.push_back(s[i]);
+            i++;
+            j++;
+            isSubsequence(s, t);
+            ans.pop_back();
+        }
+        i++;
+        j++;
+         return isSubsequence(s, t);
+
+    }
+};
