@@ -1,0 +1,31 @@
+//LeetCode 39
+//Combination Sum
+
+class Solution {
+public:
+    void solve(int idx, vector<int>&arr, int target, vector<int>&ds, vector<vector<int>>&ans){
+        if(target==0){
+            ans.push_back(ds);
+            return;
+        }
+        if(idx==arr.size()){
+            return;
+        }
+        if(arr[idx]<=target){
+            ds.push_back(arr[idx]);
+            solve(idx, arr, target-arr[idx], ds, ans);
+            ds.pop_back();
+            
+        }
+        solve(idx+1, arr, target, ds, ans);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& arr, int target) {
+        int n=arr.size();
+        vector<int>ds;
+        vector<vector<int>>ans;
+
+        solve(0, arr, target, ds, ans);
+        return ans;        
+    }
+};
