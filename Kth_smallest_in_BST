@@ -1,0 +1,25 @@
+//LeetCode
+//Kth smallest element in BST
+
+class Solution {
+public:
+    int count=0;
+    int answer;
+    int solve(TreeNode* root, int k){
+        if(root==nullptr) return 0;
+        
+        solve(root->left, k);
+        count++;
+        if(count==k){
+            answer=root->val;
+        }
+        solve(root->right, k);
+        return answer;
+    }
+
+    int kthSmallest(TreeNode* root, int k) {
+        if(root==nullptr) return 0;
+
+        return solve(root, k);
+    }
+};
