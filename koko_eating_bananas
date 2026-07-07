@@ -1,0 +1,32 @@
+//LeetCode
+//Koko eating bananas
+
+class Solution {
+public:
+    long long solve(vector<int>&piles, int k){
+        long long sum=0;
+        for(int i=0; i<piles.size(); i++){
+            sum+=(piles[i]+k-1)/k;
+        }
+        return sum;
+    }
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int maxEl=0;
+        for(int i=0; i<piles.size(); i++){
+            maxEl = max(maxEl, piles[i]);
+        }
+
+        int st=1, end=maxEl;
+        int minReq=maxEl;
+        while(st<=end){
+            int mid=st+(end-st)/2;
+            long long ans=solve(piles, mid);
+            if(ans <= h){
+                minReq=mid;
+                end=mid-1;
+            }
+            else st=mid+1;
+        }
+        return minReq;
+    }
+};
