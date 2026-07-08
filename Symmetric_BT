@@ -1,0 +1,21 @@
+//LeetCode 101
+//Is symmetric binary tree
+
+class Solution {
+public:
+    bool ans(TreeNode* leftS, TreeNode* rightS){
+
+        if(leftS==nullptr && rightS==nullptr) return true;
+        if(leftS==nullptr || rightS==nullptr) return false;
+
+        if(leftS->val!=rightS->val) return false;
+
+        return ans(leftS->right, rightS->left) && ans(leftS->left, rightS->right);
+        
+    }
+    bool isSymmetric(TreeNode* root) {
+        if(root==nullptr) return true;
+
+        return ans(root->left, root->right);
+    }
+};
